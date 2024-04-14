@@ -5,15 +5,28 @@ namespace App\Livewire;
 use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Session;
 
 class MemoryGame extends Component
 {
+    #[Session]
     public array $cards = [];
+    #[Session]
     public int $flippedCardsCount = 0;
+    #[Session]
     public array $lastFlippedCard = [];
 
+    /**
+     * Mount the component.
+     *
+     * @return void
+     */
     public function mount(): void
     {
+        if (!empty($this->cards)) {
+            return;
+        }
+
         $images = [
             ['src' => 'img_bahamut.webp', 'alt' => 'Bahamut'],
             ['src' => 'img_garuda.webp', 'alt' => 'Garuda'],
@@ -44,6 +57,13 @@ class MemoryGame extends Component
         shuffle($this->cards); // shuffle the cards
     }
 
+    /**
+     * Flip a card.
+     * Launches during the 'flip-card' event.
+     *
+     * @param string $id
+     * @return void
+     */
     #[On('flip-card')]
     public function flipCard($id): void
     {
@@ -75,6 +95,26 @@ class MemoryGame extends Component
         $this->flippedCardsCount = $currentCard['isFlipped'] ? ++$this->flippedCardsCount : --$this->flippedCardsCount;
     }
 
+    /**
+     * Reset the game.
+     * Launches during the 'reset-game' event.
+     *
+     * @return void
+     */
+    public function resetGame(): void
+    {
+        $this->cards = [];
+        $this->flippedCardsCount = 0;
+        $this->lastFlippedCard = [];
+        $this->dispatch('reset-game');
+        $this->mount();
+    }
+
+    /**
+     * Render the component.
+     *
+     * @return View
+     */
     public function render(): View
     {
         return view('livewire.memory-game');

@@ -5,9 +5,11 @@ namespace App\Livewire;
 use Illuminate\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\Attributes\Session;
 
 class Score extends Component
 {
+    #[Session]
     public int $score = 0;
 
     #[On('increment-score')]
@@ -22,6 +24,12 @@ class Score extends Component
         if ($this->score > 0) {
             --$this->score;
         }
+    }
+
+    #[On('reset-game')]
+    public function resetScore(): void
+    {
+        $this->score = 0;
     }
 
     public function render(): View
