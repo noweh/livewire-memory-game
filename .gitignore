@@ -8,9 +8,12 @@
 node_modules/
 npm-debug.log
 yarn-error.log
+package-lock.json
 
 # Laravel
 .env
+project/public/css
+project/public/js
 
 # Packages #
 ############
