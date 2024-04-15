@@ -23,38 +23,10 @@ class MemoryGame extends Component
      */
     public function mount(): void
     {
-        if (!empty($this->cards)) {
-            return;
+        if (empty($this->cards)) {
+            $this->cards = \App\Models\Card::all()->toArray();
+            shuffle($this->cards); // shuffle the cards
         }
-
-        $images = [
-            ['src' => 'img_bahamut.webp', 'alt' => 'Bahamut'],
-            ['src' => 'img_garuda.webp', 'alt' => 'Garuda'],
-            ['src' => 'img_ifrit.webp', 'alt' => 'Ifrit'],
-            ['src' => 'img_odin.webp', 'alt' => 'Odin'],
-            ['src' => 'img_ramuh.webp', 'alt' => 'Ramuh'],
-            ['src' => 'img_shiva.webp', 'alt' => 'Shiva'],
-            ['src' => 'img_titan.webp', 'alt' => 'Titan']
-        ];
-
-        foreach ($images as $image) {
-            $pair = [
-                'lot' => uniqid(), // generate a unique id for each pair
-                'src' => $image['src'],
-                'alt' => $image['alt'],
-                'isFlipped' => false
-            ];
-            $this->cards[] = $pair;
-            $this->cards[] = $pair;
-        }
-
-        // add an ID to each card
-        $this->cards = array_map(function ($card) {
-            $card['id'] = crc32(uniqid());
-            return $card;
-        }, $this->cards);
-
-        shuffle($this->cards); // shuffle the cards
     }
 
     /**
