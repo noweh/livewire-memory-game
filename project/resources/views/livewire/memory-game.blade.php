@@ -7,7 +7,7 @@
     </div>
     <div class="memory-board">
         @foreach($cards as $card)
-            @livewire(Card::class, ['card' => $card], key($card['id']))
+            @livewire(Card::class, ['card' => $card, 'id' => $card['id']], key($card['id']))
         @endforeach
     </div>
 </div>
