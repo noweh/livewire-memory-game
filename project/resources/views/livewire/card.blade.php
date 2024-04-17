@@ -1,9 +1,10 @@
 <div
-    @if(!$isFlipped || $isInError)wire:click="flipCard"@endif
+    @if(!$isLocked && !$isFlipped)wire:click="flipCard"@endif
     @if($isInError)wire:init="startTimer" class="error-cards"@endif
 >
     En erreur: {{ $isInError }}
     Retournée: {{ $isFlipped }}
+    Est verrouillée: {{ $isLocked }}
     <img src="{{ $src }}" alt="{{ $alt }}">
 </div>
 

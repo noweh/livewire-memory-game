@@ -18,6 +18,7 @@ class Card extends Component
     #[Session(key: 'isFlipped-{card.id}')]
     public bool $isFlipped = false;
     public bool $isInError = false;
+    public bool $isLocked = false;
 
     /**
      * Flip the card.
@@ -44,6 +45,12 @@ class Card extends Component
     public function startTimer(): void
     {
         $this->dispatch('start-timer');
+    }
+
+    #[On('start-timer')]
+    public function lockCard(): void
+    {
+        $this->isLocked = true;
     }
 
     /**
@@ -82,6 +89,7 @@ class Card extends Component
     #[On('reset-error-cards')]
     public function resetErrorCards($id): void
     {
+        $this->isLocked = false;
         if ($this->id === $id) {
             $this->isFlipped = false;
             $this->mount(card: $this->card, id: $this->id, isInError: false);
