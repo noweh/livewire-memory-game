@@ -17,11 +17,11 @@ class Card extends Component
     public string $alt;
     #[Session(key: 'isFlipped-{card.id}')]
     public bool $isFlipped = false;
+    public bool $isInError = false;
 
     /**
      * Flip the card.
      *
-     * @param string $id
      * @return void
      */
     public function flipCard(): void
@@ -41,31 +41,65 @@ class Card extends Component
         }
     }
 
+    public function startTimer(): void
+    {
+        $this->dispatch('start-timer');
+    }
+
     /**
      * Mount the component.
      *
      * @param array $card
+     * @param string $id
+     * @param bool $isInError
      * @return void
      */
-    public function mount($card, $id): void
+    public function mount(array $card, string $id, bool $isInError): void
     {
         if ($this->isFlipped) {
             $card = \App\Models\Card::where('id', $id)->first();
             $this->id = $card->id;
             $this->src = asset('images/' . $card->src);
             $this->alt = $card->alt;
+            $this->isInError = $isInError;
         } else {
             $this->id = $id;
             $this->src = 'https://picsum.photos/384/216';
             $this->alt = 'Back of card';
+            $this->isInError = false;
         }
+    }
+
+    #[On('is-in-error')]
+    public function isInError(array $ids): void
+    {
+        // Place the card in error if it is in the list of cards in error
+        if (in_array($this->id, $ids)) {
+            $this->isInError = true;
+        }
+    }
+
+    #[On('reset-error-cards')]
+    public function resetErrorCards($id): void
+    {
+        if ($this->id === $id) {
+            $this->isFlipped = false;
+            $this->mount(card: $this->card, id: $this->id, isInError: false);
+        }
+    }
+
+    #[On('is-in-success')]
+    public function isInSuccess(): void
+    {
+        // Every card is in success
+        $this->isInError = false;
     }
 
     #[On('reset-game')]
     public function resetGame(): void
     {
         $this->isFlipped = false;
-        $this->mount(card: $this->card, id: $this->id);
+        $this->mount(card: $this->card, id: $this->id, isInError: false);
     }
 
     /**

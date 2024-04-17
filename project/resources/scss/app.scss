@@ -11,3 +11,11 @@ body {
   grid-gap: 10px;
   max-width: 500px;
 }
+
+.memory-board .error-cards img {
+  border: 2px solid red;
+}
+
+.memory-board .error-cards {
+  background-color: red;
+}

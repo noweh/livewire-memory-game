@@ -12,7 +12,7 @@ class MemoryGame extends Component
     #[Session]
     public array $cards = [];
     #[Session]
-    public string $lastFlippedCardLot = "";
+    public array $lastFlippedCard = [];
 
     protected $listeners = ['refresh-component' => '$refresh'];
 
@@ -55,18 +55,40 @@ class MemoryGame extends Component
                 return false;
             });
 
+            //dump($flippedCards);
+
             // Check if there are two flipped cards
-            if (count($flippedCards) % 2 === 0) {
+            if (count($flippedCards) > 0 && count($flippedCards) % 2 === 0) {
                 // Dispatch the appropriate event based on whether the current card matches the last flipped card
-                if (\App\Models\Card::select('lot')->where('id', $id)->pluck('lot')->first() === $this->lastFlippedCardLot) {
+                if (\App\Models\Card::select('lot')->where('id', $id)->pluck('lot')->first() === $this->lastFlippedCard['lot']) {
                     $this->dispatch('increment-score');
+                    $this->dispatch('is-in-success')->to(Card::class);
+                    $this->cards[array_search($this->lastFlippedCard['id'], array_column($this->cards, 'id'))]['isInError'] = false;
+                    $this->cards[$key]['isInError'] = false;
                 } else {
-                    $this->dispatch('increment-attempts');
-                    $this->dispatch('decrement-score');
+                    $this->dispatch('increment-attempts')->to(Attempt::class);
+                    $this->dispatch('decrement-score')->to(Score::class);
+                    $this->dispatch('is-in-error', ids: [$id, $this->lastFlippedCard['id']])->to(Card::class);
+                    $this->cards[array_search($this->lastFlippedCard['id'], array_column($this->cards, 'id'))]['isInError'] = true;
+                    $this->cards[$key]['isInError'] = true;
                 }
-            } else {
+            } elseif (count($flippedCards) > 0) {
                 // Store the current card as the last flipped card
-                $this->lastFlippedCardLot = \App\Models\Card::select('lot')->where('id', $id)->pluck('lot')->first();
+                $this->lastFlippedCard = \App\Models\Card::select('id', 'lot')->where('id', $id)->first()->toArray();
+            }
+        }
+
+        $this->dispatch('refresh-component');
+    }
+
+    #[On('reset-error-cards')]
+    public function resetErrorCards($id): void
+    {
+        $this->lastFlippedCard = [];
+        foreach ($this->cards as $key => $card) {
+            if ((string)$card['id'] === $id) {
+                $this->cards[$key]['isInError'] = false;
+                $this->cards[$key]['isFlipped'] = false;
             }
         }
 
@@ -83,7 +105,7 @@ class MemoryGame extends Component
     {
         $this->cards = [];
         $this->flippedCardsCount = 0;
-        $this->lastFlippedCardLot = "";
+        $this->lastFlippedCard = [];
         $this->dispatch('reset-game');
         $this->mount();
     }
