@@ -81,6 +81,13 @@ class MemoryGame extends Component
         $this->dispatch('refresh-component');
     }
 
+    /**
+     * Reset the error cards.
+     * Launches during the 'reset-error-cards' event.
+     *
+     * @param string $id
+     * @return void
+     */
     #[On('reset-error-cards')]
     public function resetErrorCards($id): void
     {

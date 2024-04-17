@@ -42,11 +42,22 @@ class Card extends Component
         }
     }
 
+    /**
+     * Start the timer.
+     *
+     * @return void
+     */
     public function startTimer(): void
     {
         $this->dispatch('start-timer');
     }
 
+    /**
+     * Lock the card.
+     * Launches during the 'start-timer' event.
+     *
+     * @return void
+     */
     #[On('start-timer')]
     public function lockCard(): void
     {
@@ -77,6 +88,13 @@ class Card extends Component
         }
     }
 
+    /**
+     * Place the card in error.
+     * Launches during the 'is-in-error' event.
+     *
+     * @param array $ids
+     * @return void
+     */
     #[On('is-in-error')]
     public function isInError(array $ids): void
     {
@@ -86,6 +104,13 @@ class Card extends Component
         }
     }
 
+    /**
+     * Reset the error cards.
+     * Launches during the 'reset-error-cards' event.
+     *
+     * @param string $id
+     * @return void
+     */
     #[On('reset-error-cards')]
     public function resetErrorCards($id): void
     {
@@ -96,6 +121,12 @@ class Card extends Component
         }
     }
 
+    /**
+     * Remove the error state.
+     * Launches during the 'is-in-success' event.
+     *
+     * @return void
+     */
     #[On('is-in-success')]
     public function isInSuccess(): void
     {
@@ -103,6 +134,12 @@ class Card extends Component
         $this->isInError = false;
     }
 
+    /**
+     * Reset the game.
+     * Launches during the 'reset-game' event.
+     *
+     * @return void
+     */
     #[On('reset-game')]
     public function resetGame(): void
     {
