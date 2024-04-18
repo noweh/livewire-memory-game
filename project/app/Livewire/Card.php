@@ -13,7 +13,7 @@ class Card extends Component
 
     #[Session(key: 'id-{card.id}')]
     public string $id;
-    public string $src;
+    public ?string $src;
     public string $alt;
     #[Session(key: 'isFlipped-{card.id}')]
     public bool $isFlipped = false;
@@ -37,7 +37,7 @@ class Card extends Component
             $this->src = asset('images/' . $card->src);
             $this->alt = $card->alt;
         } else {
-            $this->src = 'https://picsum.photos/384/216';
+            $this->src = null;
             $this->alt = 'Back of card';
         }
     }
@@ -82,7 +82,7 @@ class Card extends Component
             $this->isInError = $isInError;
         } else {
             $this->id = $id;
-            $this->src = 'https://picsum.photos/384/216';
+            $this->src = null;
             $this->alt = 'Back of card';
             $this->isInError = false;
         }

@@ -1,21 +1,223 @@
-$primary: red;
+$primary: white;
+$secondary: #1e90ff;
+$third: #4169e1;
 
 body {
+  background-color: #12181f;
   color: $primary;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.nav-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+button {
+  background-color: #12181f;
+  font-weight: normal;
+  color: $primary;
+  font-family: 'Press Start 2P', cursive;
+}
+
+h1 {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 30px;
+  margin: 80px 0 80px 0;
+}
+
+h2 {
+  text-align: center;
+  font-weight: 400;
+  font-size: 30px;
+  margin-bottom: 50px;
+}
+
+p {
+  text-align: center;
+  font-size: 15px;
+  margin-top: 30px;
+}
+
+.logo {
+  height: 100px;
+  border-radius: 10px;
+  margin-right: 40px;
+}
+
+.buttons {
+  display: flex;
+  margin-top: 50px;
+}
+
+.breadcrumbs {
+  position: absolute;
+  @media (max-width: 1300px) {
+    position: relative;
+  }
+}
+
+.breadcrumbs a {
+  display: inline-block;
+  background-color: $secondary;
+  color: $primary;
+  padding: 20px 100px 20px 100px;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.breadcrumbs a:hover {
+  background-color: $third;
+}
+
+.breadcrumbs ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap:nowrap;
+  @media(max-width: 1300px) {
+    align-content: center;
+    justify-content: center;
+  }
+}
+
+.breadcrumbs .emoticon {
+  font-size: 35px;
+  margin-right: 5px;
+}
+
+.dashboard-navigation ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 50px;
+}
+
+.dashboard-navigation li {
+  margin-bottom: 20px;
+}
+
+.dashboard-navigation a {
+  display: block;
+  background-color: $secondary;
+  color: $primary;
+  text-align: center;
+  padding: 20px;
+  text-decoration: none;
+  font-size: 20px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.dashboard-navigation a:hover {
+  background-color: $third;
+}
+
+.rights {
+    text-align: center;
+    margin-top: 80px;
+}
+
+.emoticon {
+  font-size: 35px;
+  margin-right: 15px;
+}
+
+.card img {
+  width: 250px;
+  height: 216px;
+  object-fit: cover;
+  border-radius: 10px;
+  background-color: $primary;
+}
+
+.action {
+  display: block;
+  background-color: $secondary;
+  color: $primary;
+  padding: 20px 100px 20px 100px;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 15px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+  @media(min-width: 1300px) {
+    margin-top: 95px;
+  }
+}
+
+.action:hover {
+  background-color: $third;
 }
 
 .memory-board {
   display: grid;
-  grid-template-rows: repeat(4, 1fr);
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 10px;
-  max-width: 500px;
+  justify-content: center;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(4, 250px);
+  grid-gap: 16px;
+  @media(max-width: 1024px) {
+    grid-template-columns: repeat(3, 250px);
+  }
+  @media(max-width: 750px) {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
-.memory-board .error-cards img {
-  border: 2px solid red;
+.memory-card {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
-.memory-board .error-cards {
-  background-color: red;
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.card.card-back .img-placeholder  {
+  display: block;
+}
+.card:not(.card-back) .img-placeholder  {
+  display: none;
+}
+.img-placeholder {
+  width: 250px;
+  height: 216px;
+  border-radius: 10px;
+  background-image: url("../../public/images/pattern.svg");
+  background-position: center;
+  background-size: auto;
+  cursor: pointer;
+}
+
+.error-status {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card:not(.error-card) .error-status {
+  display: none;
+}
+
+.error-card .error-status {
+  border: red 2px solid;
+  display: block;
+  border-radius: 10px;
 }

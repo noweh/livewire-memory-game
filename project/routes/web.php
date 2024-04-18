@@ -14,5 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('play', ['memoryGame' => \App\Livewire\MemoryGame::class]);
-});
+    return view('home', ['dashboard' => \App\Livewire\Dashboard::class]);
+})->name('home');
+
+Route::get('/play', function () {
+    return view('pages.play', ['memoryGame' => \App\Livewire\MemoryGame::class]);
+})->name('play');
+
+Route::get('/high-scores', function () {
+    return view('pages.high-scores', ['scores' => \App\Models\Score::orderBy('score', 'desc')->take(15)->get()]);
+})->name('high-scores');
+
+Route::get('/credits', function () {
+    return view('pages.credits', ['credits' => \App\Models\Credit::all()]);
+})->name('credits');

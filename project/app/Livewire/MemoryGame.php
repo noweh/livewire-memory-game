@@ -55,8 +55,6 @@ class MemoryGame extends Component
                 return false;
             });
 
-            //dump($flippedCards);
-
             // Check if there are two flipped cards
             if (count($flippedCards) > 0 && count($flippedCards) % 2 === 0) {
                 // Dispatch the appropriate event based on whether the current card matches the last flipped card

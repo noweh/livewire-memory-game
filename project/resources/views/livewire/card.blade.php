@@ -1,11 +1,15 @@
 <div
     @if(!$isLocked && !$isFlipped)wire:click="flipCard"@endif
-    @if($isInError)wire:init="startTimer" class="error-cards"@endif
+    @if($isInError) wire:init="startTimer"@endif
+    class="card @if($isInError)error-card @endif
+    @if(!$isFlipped)card-back @endif"
 >
-    En erreur: {{ $isInError }}
-    Retournée: {{ $isFlipped }}
-    Est verrouillée: {{ $isLocked }}
-    <img src="{{ $src }}" alt="{{ $alt }}">
+    <div class="error-status"></div>
+    @if($src)
+        <img src="{{ $src }}" alt="{{ $alt }}">
+    @else
+        <div class="img-placeholder"></div>
+    @endif
 </div>
 
 

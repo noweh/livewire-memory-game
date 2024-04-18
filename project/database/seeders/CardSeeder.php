@@ -27,7 +27,8 @@ class CardSeeder extends Seeder
             ['src' => 'img_odin.webp', 'alt' => 'Odin'],
             ['src' => 'img_ramuh.webp', 'alt' => 'Ramuh'],
             ['src' => 'img_shiva.webp', 'alt' => 'Shiva'],
-            ['src' => 'img_titan.webp', 'alt' => 'Titan']
+            ['src' => 'img_titan.webp', 'alt' => 'Titan'],
+            ['src' => 'img_leviathan.jpg', 'alt' => 'Leviathan']
         ];
 
         foreach ($images as $image) {
