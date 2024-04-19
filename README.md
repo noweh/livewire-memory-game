@@ -6,6 +6,7 @@
 ![Alpine.js](https://img.shields.io/badge/Alpine.js-v2.8+-8bc0d0.svg?style=flat-square&logo=alpine.js)
 ![SQLite](https://img.shields.io/badge/SQLite-v3.36+-003b57.svg?style=flat-square&logo=sqlite)
 ![NPM](https://img.shields.io/badge/NPM-v9.5+-cb3837.svg?style=flat-square&logo=npm)
+[![MIT Licensed](https://img.shields.io/github/license/noweh/livewire-memory-game)](licence.md)
 
 Source code for Final Fantasy Memory Quest.
 
