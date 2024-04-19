@@ -1,5 +1,12 @@
 # livewire-memory-game
 
+![PHP](https://img.shields.io/badge/PHP-v8.1+-828cb7.svg?style=flat-square&logo=php)
+![Laravel](https://img.shields.io/badge/Laravel-v10.10+-f55247.svg?style=flat-square&logo=laravel)
+![Livewire](https://img.shields.io/badge/Livewire-v3.4+-00d88e.svg?style=flat-square&logo=laravel)
+![Alpine.js](https://img.shields.io/badge/Alpine.js-v2.8+-8bc0d0.svg?style=flat-square&logo=alpine.js)
+![SQLite](https://img.shields.io/badge/SQLite-v3.36+-003b57.svg?style=flat-square&logo=sqlite)
+![NPM](https://img.shields.io/badge/NPM-v9.5+-cb3837.svg?style=flat-square&logo=npm)
+
 Source code for Final Fantasy Memory Quest.
 
 ## BACK-END INSTALL
