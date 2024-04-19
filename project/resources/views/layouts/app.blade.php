@@ -22,7 +22,7 @@
             <nav class="breadcrumbs">
                 <ul>
                     <li>
-                        <a href="{{ route('home') }}" wire:navigate><span class="emoticon">🏠</span> Back</a>
+                        <a href="{{ route('home') }}" wire:navigate><span class="emoticon">🏠</span>Back</a>
                     </li>
                 </ul>
             </nav>

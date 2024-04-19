@@ -26,10 +26,9 @@ class CreditSeeder extends Seeder
             ['name' => 'Julien SCHMITT', 'job' => 'Lead Event Designer', 'url' => 'https://github.com/noweh'],
             ['name' => 'Julien SCHMITT', 'job' => 'Lead Graphic Designer', 'url' => 'https://github.com/noweh'],
             ['name' => 'Julien SCHMITT', 'job' => 'Lead Menu System Designer', 'url' => 'https://github.com/noweh'],
-            ['name' => 'Julien SCHMITT', 'job' => 'Lead Programmer', 'url' => 'https://github.com/noweh'],
             ['name' => 'Julien SCHMITT', 'job' => 'Visual and Graphics', 'url' => 'https://github.com/noweh'],
+            ['name' => 'Julien SCHMITT', 'job' => 'Lead Programmer', 'url' => 'https://github.com/noweh'],
             ['name' => 'Alistair SCHMITT', 'job' => 'QA Tester', 'url' => null],
-            ['name' => 'Aurélie TOURETTE', 'job' => 'QA Tester', 'url' => null],
             ['name' => 'June', 'job' => 'Just a cat 🐱', 'url' => 'https://www.instagram.com/p/C54yl6tIbzn']
         ];
 

@@ -63,6 +63,10 @@ class MemoryGame extends Component
                     $this->dispatch('is-in-success')->to(Card::class);
                     $this->cards[array_search($this->lastFlippedCard['id'], array_column($this->cards, 'id'))]['isInError'] = false;
                     $this->cards[$key]['isInError'] = false;
+
+                    if (count($flippedCards) === count($this->cards)) {
+                        $this->dispatch('game-over')->to(Score::class);
+                    }
                 } else {
                     $this->dispatch('increment-attempts')->to(Attempt::class);
                     $this->dispatch('decrement-score')->to(Score::class);

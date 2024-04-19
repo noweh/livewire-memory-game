@@ -8,6 +8,11 @@ body {
   font-family: 'Press Start 2P', cursive;
 }
 
+input {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 15px;
+}
+
 .nav-wrapper {
   position: relative;
   width: 100%;
@@ -20,20 +25,21 @@ button {
   font-family: 'Press Start 2P', cursive;
 }
 
-h1 {
-  display: flex;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  font-weight: 500;
-  font-size: 30px;
-  margin: 80px 0 80px 0;
-}
-
-h2 {
+h1, h2 {
   text-align: center;
   font-weight: 400;
   font-size: 30px;
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  margin: 80px 0;
+}
+
+h2 {
   margin-bottom: 50px;
 }
 
@@ -59,67 +65,74 @@ p {
   @media (max-width: 1300px) {
     position: relative;
   }
-}
 
-.breadcrumbs a {
-  display: inline-block;
-  background-color: $secondary;
-  color: $primary;
-  padding: 20px 100px 20px 100px;
-  text-decoration: none;
-  border-radius: 10px;
-  transition: background-color 0.3s ease;
-}
+  a {
+    display: inline-block;
+    width: 150px;
+    background-color: $secondary;
+    color: $primary;
+    padding: 20px 100px;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    font-size: 20px;
+    &:hover {
+      background-color: $third;
+    }
+  }
 
-.breadcrumbs a:hover {
-  background-color: $third;
-}
+  ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap:nowrap;
+    @media(max-width: 1300px) {
+      padding-inline-start: 0;
+      align-content: center;
+      justify-content: center;
+    }
+  }
 
-.breadcrumbs ul {
-  list-style-type: none;
-  display: flex;
-  flex-direction: row;
-  flex-wrap:nowrap;
-  @media(max-width: 1300px) {
-    align-content: center;
-    justify-content: center;
+  .emoticon {
+    font-size: 35px;
+    margin-right: 5px;
   }
 }
 
-.breadcrumbs .emoticon {
-  font-size: 35px;
-  margin-right: 5px;
-}
+.dashboard-navigation {
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 50px;
+  }
 
-.dashboard-navigation ul {
-  list-style-type: none;
-  padding: 0;
-  margin-top: 50px;
-}
+  li {
+    margin-bottom: 20px;
+  }
 
-.dashboard-navigation li {
-  margin-bottom: 20px;
-}
+  a {
+    display: block;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: $secondary;
+    color: $primary;
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+    font-size: 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
 
-.dashboard-navigation a {
-  display: block;
-  background-color: $secondary;
-  color: $primary;
-  text-align: center;
-  padding: 20px;
-  text-decoration: none;
-  font-size: 20px;
-  border-radius: 10px;
-  transition: background-color 0.3s ease;
-}
-
-.dashboard-navigation a:hover {
-  background-color: $third;
+    &:hover {
+      background-color: $third;
+    }
+  }
 }
 
 .rights {
-    text-align: center;
-    margin-top: 80px;
+  text-align: center;
+  margin-top: 80px;
 }
 
 .emoticon {
@@ -127,22 +140,29 @@ p {
   margin-right: 15px;
 }
 
-.card img {
-  width: 250px;
-  height: 216px;
-  object-fit: cover;
-  border-radius: 10px;
-  background-color: $primary;
+.card {
+  img {
+    width: 250px;
+    height: 216px;
+    object-fit: cover;
+    border-radius: 10px;
+    background-color: $primary;
+  }
 }
 
 .action {
-  display: block;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 350px;
   background-color: $secondary;
   color: $primary;
-  padding: 20px 100px 20px 100px;
+  padding: 20px 100px;
   text-decoration: none;
   border-radius: 10px;
-  font-size: 15px;
+  font-size: 20px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
@@ -150,10 +170,10 @@ p {
   @media(min-width: 1300px) {
     margin-top: 95px;
   }
-}
 
-.action:hover {
-  background-color: $third;
+  &:hover {
+    background-color: $third;
+  }
 }
 
 .memory-board {
@@ -186,38 +206,118 @@ p {
   align-items: center;
   position: relative;
   box-sizing: border-box;
+
+  &.card-back .img-placeholder  {
+    display: block;
+  }
+
+  &:not(.card-back) .img-placeholder  {
+    display: none;
+  }
+
+  .img-placeholder {
+    width: 250px;
+    height: 216px;
+    border-radius: 10px;
+    background-image: url("../../public/images/pattern.svg");
+    background-position: center;
+    background-size: auto;
+    cursor: pointer;
+  }
+
+  .error-status {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &:not(.error-card) .error-status {
+    display: none;
+  }
+
+  &.error-card .error-status {
+    border: red 2px solid;
+    display: block;
+    border-radius: 10px;
+  }
 }
 
-.card.card-back .img-placeholder  {
-  display: block;
-}
-.card:not(.card-back) .img-placeholder  {
-  display: none;
-}
-.img-placeholder {
-  width: 250px;
-  height: 216px;
-  border-radius: 10px;
-  background-image: url("../../public/images/pattern.svg");
-  background-position: center;
-  background-size: auto;
-  cursor: pointer;
-}
-
-.error-status {
-  position: absolute;
-  top: 0;
+.modal {
+  position: fixed;
+  z-index: 1;
   left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+
 }
 
-.card:not(.error-card) .error-status {
-  display: none;
-}
-
-.error-card .error-status {
-  border: red 2px solid;
-  display: block;
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $secondary;
+  margin: 10% auto;
+  border: 1px solid #888;
+  width: 80%;
+  overflow: hidden;
   border-radius: 10px;
+  padding: 20px 20px 40px;
+
+  p {
+    margin-top: 20px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  label {
+    margin-bottom: 10px;
+  }
+
+  input {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: none;
+    background-color: $third;
+    color: $primary;
+    text-align: center;
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+
+  .error {
+    color: red;
+    display: block;
+  }
+
+  button {
+    background-color: $secondary;
+    color: $primary;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    &:hover {
+      background-color: $third;
+    }
+  }
 }

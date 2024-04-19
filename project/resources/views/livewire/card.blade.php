@@ -19,7 +19,7 @@
         $wire.on('start-timer', () => {
             setTimeout(() => {
                 $wire.dispatch('reset-error-cards', { id: String({{ $id }}) })
-            }, 2000)
+            }, 500)
         })
     </script>
     @endscript
