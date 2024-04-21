@@ -10,6 +10,8 @@
 
 Source code for Final Fantasy Memory Quest.
 
+![final-fantasy-memory-quest](https://github.com/noweh/livewire-memory-game/assets/11422029/8a3062ca-4fc6-447c-94ea-ab9193edc538)
+
 ## BACK-END INSTALL
 
 ### Requirement
