@@ -10,7 +10,22 @@
 
 Source code for Final Fantasy Memory Quest.
 
-![final-fantasy-memory-quest](https://github.com/noweh/livewire-memory-game/assets/11422029/8a3062ca-4fc6-447c-94ea-ab9193edc538)
+### Game content:
+![game.gif](assets%2Fgame.gif)
+
+### Rules
+
+|                          ![success.gif](assets%2Fsuccess.gif)                           |                                              ![error.gif](assets%2Ferror.gif)                                              |
+|:---------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------:|
+| If the two cards are <span style="color:green">the same</span>, then you win 10 points. | If the two cards are <span style="color:red">different</span>, then you lose 1 point and the number of Attempts increases. |
+
+## Screenshots
+
+### Dashboard
+![dashboard.jpg](assets%2Fdashboard.jpg)
+
+### Credits
+![credits.jpg](assets%2Fcredits.jpg)
 
 ## BACK-END INSTALL
 
