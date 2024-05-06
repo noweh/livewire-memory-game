@@ -17,7 +17,7 @@ Source code for Final Fantasy Memory Quest.
 
 |                          ![success.gif](assets%2Fsuccess.gif)                           |                                              ![error.gif](assets%2Ferror.gif)                                              |
 |:---------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------:|
-| If the two cards are <span style="color:green">the same</span>, then you win 10 points. | If the two cards are <span style="color:red">different</span>, then you lose 1 point and the number of Attempts increases. |
+| :green_circle:  If the two cards are <span style="color:green">the same</span>, then you win 10 points. | :red_circle: If the two cards are <span style="color:red">different</span>, then you lose 1 point and the number of Attempts increases. |
 
 ## Screenshots
 
